@@ -1,28 +1,29 @@
 package pkgPokerBLL;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 public class Table implements Serializable {
 
 	private UUID TableID;
 
-	// Change this from ArrayList to HashMap.
-	private ArrayList<Player> TablePlayers = new ArrayList<Player>();
+	HashMap<UUID, Player> TablePlayers = new HashMap<UUID, Player>();
 
 	public Table() {
 		super();
 		TableID = UUID.randomUUID();
 	}
 
-	public Table AddPlayerToTable(Player p) {
-		// TODO: Lab #4 Add a player to the table (should be pretty easy)
+	public Table AddPlayerToTable(Player p, UUID playerID) {
+		this.TablePlayers.put(playerID, p);
 		return this;
 	}
 
-	public Table RemovePlayerFromTable(Player p) {
-		// TODO: Lab #4 Remove a player from the table
+	public Table RemovePlayerFromTable(Player p, UUID playerID) {
+		this.TablePlayers.remove(playerID, p);
 		return this;
 	}
+	public HashMap<UUID, Player> getHmPlayer() {
+		  return TablePlayers;}
 }
